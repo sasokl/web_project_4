@@ -1,0 +1,6 @@
+.profile {
+  width: calc(100% * (880/1280));
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
