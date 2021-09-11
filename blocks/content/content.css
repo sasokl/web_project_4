@@ -5,3 +5,15 @@
   width: 100%;
   padding: 40px 0 0;
 }
+
+@media screen and (max-width: 890px) {
+  .content {
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .content {
+    width: 282px;
+  }
+}

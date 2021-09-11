@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="stylesheet" type="text/css" href="blocks/card/__image/card__image.css"/>
+  <link rel="stylesheet" type="text/css" href="blocks/card/card.css"/>
+  <link rel="stylesheet" type="text/css" href="blocks/cards/cards.css"/>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./pages/index.css">
   <title>Title</title>
 </head>
-<body class="root">
+<body class="root variables">
 <div class="page">
   <header class="header">
     <div class="logo header__logo" title="logo"></div>
@@ -16,7 +19,7 @@
       <div class="profile__content">
         <div class="profile__avatar"></div>
         <div class="profile__info">
-          <div>
+          <div class="profile__name-container">
             <h1 class="profile__name">Jacques Cousteau</h1>
             <button class="profile__edit-button"></button>
           </div>
@@ -25,7 +28,56 @@
       </div>
       <button class="profile__add-button"></button>
     </section>
+    <section class="cards">
+      <div class="card">
+        <img src="./images/kirill-pershin-1.jpg" alt="" class="card__image">
+        <div class="card__content">
+          <p class="card__title">Yosemite Valley</p>
+          <button type="button" class="card__like"></button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="./images/kirill-pershin-2.jpg" alt="" class="card__image">
+        <div class="card__content">
+          <p class="card__title">Lake Louise</p>
+          <button type="button" class="card__like"></button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="./images/kirill-pershin-3.jpg" alt="" class="card__image">
+        <div class="card__content">
+          <p class="card__title">Bald Mountains</p>
+          <button type="button" class="card__like"></button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="./images/kirill-pershin-4.jpg" alt="" class="card__image">
+        <div class="card__content">
+          <p class="card__title">Latemar</p>
+          <button type="button" class="card__like"></button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="./images/kirill-pershin-5.jpg" alt="" class="card__image">
+        <div class="card__content">
+          <p class="card__title">Vanoise National Park</p>
+          <button type="button" class="card__like"></button>
+        </div>
+      </div>
+      <div class="card">
+        <img src="./images/kirill-pershin-6.jpg" alt="" class="card__image">
+        <div class="card__content">
+          <p class="card__title">Lago di Braies</p>
+          <button type="button" class="card__like"></button>
+        </div>
+      </div>
+    </section>
   </main>
+  <footer class="footer">
+    <p class="footer__text">
+      &copy; 2021 Around The U.S.
+    </p>
+  </footer>
 </div>
 </body>
 </html>
