@@ -1,4 +1,5 @@
 .variables {
   --link-transition: opacity .3s linear;
   --hovered-link-opacity: .6;
+  --hovered-button-opacity: .8;
 }

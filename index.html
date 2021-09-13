@@ -79,5 +79,45 @@
     </p>
   </footer>
 </div>
+<div class="popup">
+  <div class="popup__container">
+    <button class="popup__close-button"></button>
+    <h1 class="popup__title">Edit profile</h1>
+    <form class="popup__form popup__form_type_edit-profile" name="popup-form" action="#" novalidate>
+      <input
+        type="text"
+        name="name"
+        id="name-input"
+        class="popup__input popup__input_content_name"
+        value=""
+        minlength="2"
+        maxlength="40"
+        required
+        placeholder="Name"
+      />
+      <span id="name-input-error" class="popup__input-error">
+            This field is required
+          </span>
+
+      <input
+        type="text"
+        name="about"
+        id="about-input"
+        value=""
+        class="popup__input popup__input_content_about"
+        minlength="2"
+        maxlength="200"
+        required
+        placeholder="About me"
+      />
+      <span id="about-input-error" class="popup__input-error">
+            This field is required
+          </span>
+      <button type="submit" class="popup__submit-button hover hover_opacity_dark">
+        Save
+      </button>
+    </form>
+  </div>
+</div>
 </body>
 </html>
