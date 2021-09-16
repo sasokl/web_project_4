@@ -13,7 +13,7 @@
   border-radius: 2px;
   margin: 48px 0 0;
   padding: 0;
-  transition: var(--link-transition)
+  transition: var(--link-transition);
 }
 
 .popup__submit-button:hover {
