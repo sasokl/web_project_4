@@ -4,8 +4,9 @@
   gap: 16px;
 }
 
-@media screen and (max-width: 820px) {
+@media screen and (max-width: 720px) {
   .profile__info {
     align-items: center;
+    width: 100%;
   }
 }

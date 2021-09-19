@@ -6,13 +6,28 @@
   background-repeat: no-repeat;
   background-size: contain;
   cursor: pointer;
-  width: 40px;
-  height: 40px;
-  top: -42px;
-  right: -42px;
+  width: 33px;
+  height: 33px;
+  top: -37px;
+  right: -37px;
   border: none;
   padding: 0;
   transition: var(--link-transition);
+}
+
+@media screen and (max-width: 530px) {
+  .popup__close-button {
+    width: 25px;
+    height: 25px;
+    right: 0px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .popup__close-button {
+    width: 20px;
+    height: 20px;
+  }
 }
 
 .popup__close-button:hover {

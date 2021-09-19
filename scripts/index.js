@@ -1,4 +1,3 @@
-
 //=============== Initialization ===============//
 
 // Buttons
@@ -17,44 +16,43 @@ const profileAbout = document.querySelector('.profile__about');
 const popup = document.querySelector('.popup');
 const popupForm = document.querySelector('.popup__form');
 
-// Variables
-let profileNameText = profileName.textContent;
-let profileAboutText = profileAbout.textContent;
-
-
-// Listeners
-buttonOpenPopup.addEventListener('click', popupOpen);
-buttonClosePopup.addEventListener('click', popupClose);
-
-for (let i = 0; i < document.querySelectorAll('.card__like-button').length; i++) {
-    document.querySelectorAll('.card__like-button')[i].addEventListener('click',(e) => cardLikeToggle(e.target));
-}
-
-popupForm.addEventListener('submit', popupSubmit);
-
 //=============== Functions ===============//
 
 function popupOpen() {
-    inputProfileNamePopup.value = profileNameText;
-    inputProfileCareerPopup.value = profileAboutText;
-    popup.style.display = 'flex';
+    inputProfileNamePopup.value = profileName.textContent;
+    inputProfileCareerPopup.value = profileAbout.textContent;
+    popup.classList.toggle('popup_open');
 }
 
 function popupClose() {
-    popup.style.setProperty('display','none');
+    popup.classList.toggle('popup_open');
 }
 
 function popupSubmit(e) {
     e.preventDefault();
 
-    profileNameText = inputProfileNamePopup.value;
-    profileAboutText = inputProfileCareerPopup.value;
-    profileName.textContent = profileNameText;
-    profileAbout.textContent = profileAboutText;
+    /*
+    With creating interim variables my point was to store the data (name and about info) in more safe place than html
+    tags. I mean when if i had a database i wouldn't store data in HTML tags, where anyone can change data via browser
+    inspector. So by creating variables storing this data, I tried to do some kind of little simulation of real work with
+    the database ... =)
+    */
+    profileName.textContent = inputProfileNamePopup.value;
+    profileAbout.textContent = inputProfileCareerPopup.value;
     popupClose();
 }
 
-function cardLikeToggle(button) {
+/*function cardLikeToggle(button) {
     button.classList.toggle('card__like-button_active');
-}
+}*/
+
+// Listeners
+buttonOpenPopup.addEventListener('click', popupOpen);
+buttonClosePopup.addEventListener('click', popupClose);
+
+/*for (let i = 0; i < document.querySelectorAll('.card__like-button').length; i++) {
+    document.querySelectorAll('.card__like-button')[i].addEventListener('click',(e) => cardLikeToggle(e.target));
+}*/
+
+popupForm.addEventListener('submit', popupSubmit);
 

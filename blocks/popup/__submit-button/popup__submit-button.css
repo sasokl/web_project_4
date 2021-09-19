@@ -16,6 +16,20 @@
   transition: var(--link-transition);
 }
 
+@media screen and (max-width: 480px) {
+  .popup__submit-button {
+    font-size: 16px;
+    line-height: 20px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .popup__submit-button {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
+
 .popup__submit-button:hover {
   opacity: var(--hovered-button-opacity);
 }
