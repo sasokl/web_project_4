@@ -1,45 +1,69 @@
 //=============== Initialization ===============//
 
 // Buttons
-const buttonOpenPopup = document.querySelector('.profile__edit-button');
-const buttonClosePopup = document.querySelector('.popup__close-button');
+// popup profile buttons
+const buttonOpenProfilePopup = document.querySelector('.profile__edit-button');
+const buttonCloseProfilePopup = document.querySelector('.popup__close-button_type_profile');
+// popup card-add buttons
+const buttonOpenAddCardPopup = document.querySelector('.profile__add-button');
+const buttonCloseAddCardPopup = document.querySelector('.popup__close-button_type_add-card');
 
 // Inputs
-const inputProfileNamePopup = document.querySelector('#name-input');
-const inputProfileCareerPopup = document.querySelector('#about-input');
+// popup profile inputs
+const inputProfileNamePopup = document.querySelector('#profile-name-input');
+const inputProfileAboutPopup = document.querySelector('#profile-about-input');
+// popup card-add inputs
+const inputCardTitlePopup = document.querySelector('#card-title-input');
+const inputCardImageLinkPopup = document.querySelector('#card-image-link-input');
 
 // Text elements
 const profileName = document.querySelector('.profile__name');
 const profileAbout = document.querySelector('.profile__about');
 
 // Popups
-const popup = document.querySelector('.popup');
-const popupForm = document.querySelector('.popup__form');
+// popup profile
+const popupProfile = document.querySelector('.popup_type_profile');
+const popupProfileForm = document.querySelector('.popup__form_type_profile');
+// popup profile
+const popupAddCard = document.querySelector('.popup_type_add-card');
+const popupAddCardForm = document.querySelector('.popup__form_type_add-card');
+
+// Cards
+const initialCards = [
+    {
+        name: "Yosemite Valley",
+        link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
+    },
+    {
+        name: "Lake Louise",
+        link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
+    },
+    {
+        name: "Bald Mountains",
+        link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
+    },
+    {
+        name: "Latemar",
+        link: "https://code.s3.yandex.net/web-code/latemar.jpg"
+    },
+    {
+        name: "Vanoise National Park",
+        link: "https://code.s3.yandex.net/web-code/vanoise.jpg"
+    },
+    {
+        name: "Lago di Braies",
+        link: "https://code.s3.yandex.net/web-code/lago.jpg"
+    }
+];
 
 //=============== Functions ===============//
 
-function popupOpen() {
-    inputProfileNamePopup.value = profileName.textContent;
-    inputProfileCareerPopup.value = profileAbout.textContent;
+function popupClose(popup) {
     popup.classList.toggle('popup_open');
 }
 
-function popupClose() {
+function popupOpen(popup) {
     popup.classList.toggle('popup_open');
-}
-
-function popupSubmit(e) {
-    e.preventDefault();
-
-    /*
-    With creating interim variables my point was to store the data (name and about info) in more safe place than html
-    tags. I mean when if i had a database i wouldn't store data in HTML tags, where anyone can change data via browser
-    inspector. So by creating variables storing this data, I tried to do some kind of little simulation of real work with
-    the database ... =)
-    */
-    profileName.textContent = inputProfileNamePopup.value;
-    profileAbout.textContent = inputProfileCareerPopup.value;
-    popupClose();
 }
 
 /*function cardLikeToggle(button) {
@@ -47,12 +71,29 @@ function popupSubmit(e) {
 }*/
 
 // Listeners
-buttonOpenPopup.addEventListener('click', popupOpen);
-buttonClosePopup.addEventListener('click', popupClose);
+buttonOpenProfilePopup.addEventListener('click', () => {
+    inputProfileNamePopup.value = profileName.textContent;
+    inputProfileAboutPopup.value = profileAbout.textContent;
+    popupOpen(popupProfile);
+});
+buttonCloseProfilePopup.addEventListener('click', () => popupClose(popupProfile));
+
+buttonOpenAddCardPopup.addEventListener('click', () => popupOpen(popupAddCard));
+buttonCloseAddCardPopup.addEventListener('click', () => popupClose(popupAddCard));
 
 /*for (let i = 0; i < document.querySelectorAll('.card__like-button').length; i++) {
     document.querySelectorAll('.card__like-button')[i].addEventListener('click',(e) => cardLikeToggle(e.target));
 }*/
 
-popupForm.addEventListener('submit', popupSubmit);
+popupProfileForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    profileName.textContent = inputProfileNamePopup.value;
+    profileAbout.textContent = inputProfileAboutPopup.value;
+    popupClose(popupProfile);
+});
+
+popupAddCardForm.addEventListener('submit',(e) => {
+    e.preventDefault();
+    popupClose(popupAddCard);
+})
 

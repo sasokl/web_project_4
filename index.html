@@ -76,15 +76,15 @@
     </p>
   </footer>
 </div>
-<div class="popup">
+<div class="popup popup_type_profile">
   <div class="popup__container">
-    <button type="button" class="popup__close-button"></button>
+    <button type="button" class="popup__close-button popup__close-button_type_profile"></button>
     <h2 class="popup__title">Edit profile</h2>
-    <form class="popup__form" name="popup-form" action="#" novalidate>
+    <form action="#" class="popup__form popup__form_type_profile" name="popup-form"  novalidate>
       <input
         type="text"
         name="name"
-        id="name-input"
+        id="profile-name-input"
         class="popup__input"
         value=""
         minlength="2"
@@ -96,7 +96,7 @@
       <input
         type="text"
         name="about"
-        id="about-input"
+        id="profile-about-input"
         value=""
         class="popup__input"
         minlength="2"
@@ -107,6 +107,40 @@
 
       <button type="submit" class="popup__submit-button">
         Save
+      </button>
+    </form>
+  </div>
+</div>
+<div class="popup popup_type_add-card">
+  <div class="popup__container">
+    <button class="popup__close-button popup__close-button_type_add-card" type="button"></button>
+    <h2 class="popup__title">New place</h2>
+    <form action="#" class="popup__form popup__form_type_add-card" name="popup-form" novalidate>
+      <input
+        type="text"
+        name="card-title"
+        id="card-title-input"
+        class="popup__input"
+        value=""
+        minlength="2"
+        maxlength="40"
+        required
+        placeholder="Title"
+      />
+
+      <input
+        type="text"
+        name="card-image-link"
+        id="card-image-link-input"
+        value=""
+        class="popup__input"
+        minlength="2"
+        maxlength="200"
+        required
+        placeholder="Image link"
+      />
+      <button type="submit" class="popup__submit-button">
+        Create
       </button>
     </form>
   </div>

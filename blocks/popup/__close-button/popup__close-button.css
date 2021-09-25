@@ -19,7 +19,7 @@
   .popup__close-button {
     width: 25px;
     height: 25px;
-    right: 0px;
+    right: 0;
   }
 }
 
