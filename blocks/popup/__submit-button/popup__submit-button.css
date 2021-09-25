@@ -31,5 +31,5 @@
 }
 
 .popup__submit-button:hover {
-  opacity: var(--hovered-button-opacity);
+  opacity: var(--hovered-popup-submit-button-opacity);
 }

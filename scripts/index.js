@@ -60,7 +60,7 @@ const initialCards = [
     }
 ];
 
-initialCards.forEach((card) => {
+initialCards.slice().reverse().forEach((card) => {
     addCard(card.name, card.link);
 });
 //=============== Functions ===============//
@@ -73,17 +73,19 @@ function popupOpen(popup) {
     popup.classList.toggle('popup_open');
 }
 
-function addCard(name, link){
+function addCard(name, link) {
     const newCard = templateCard.querySelector('.card').cloneNode(true);
     newCard.querySelector('.card__image').alt = name;
     newCard.querySelector('.card__image').src = link;
     newCard.querySelector('.card__title').textContent = name;
-    cards.append(newCard);
+    newCard.querySelector('.card__delete-button').addEventListener('click',() => {
+        newCard.remove();
+    });
+    newCard.querySelector('.card__like-button').addEventListener('click', (e) => {
+        e.target.classList.toggle('card__like-button_active');
+    });
+    cards.prepend(newCard);
 }
-/*function cardLikeToggle(button) {
-    button.classList.toggle('card__like-button_active');
-}*/
-
 // Listeners
 buttonOpenProfilePopup.addEventListener('click', () => {
     inputProfileNamePopup.value = profileName.textContent;
