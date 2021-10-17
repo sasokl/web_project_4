@@ -8,15 +8,12 @@
   color: black;
   border: 0;
   box-shadow: 0 1px 0 0 rgba(0, 0, 0, 0.2);
-  margin: 30px 0 0;
-  padding: 0 0 13px 0;
-}
-
-.popup__input:first-of-type {
   margin: 0;
+  padding: 0 0 13px 0;
 }
 
 .popup__input:focus {
   outline: none;
   box-shadow: 0 2px 0 0 rgba(0, 0, 0, 1);
+  background-color: white;
 }
