@@ -186,7 +186,6 @@ popupProfileForm.addEventListener('submit', (e) => {
 popupAddCardForm.addEventListener('submit', (e) => {
   e.preventDefault();
   addCard(inputCardTitlePopup.value, inputCardImageLinkPopup.value);
-  popupAddCardForm.reset();
   closePopup(popupAddCard);
 })
 
