@@ -84,14 +84,6 @@ initialCards.slice().reverse().forEach((card) => {
 });
 
 //=============== Functions ===============//
-let downObj;
-const overlayDown = (downEvt) => {
-  downObj = downEvt.target;
-};
-
-const overlayUp = (upEvt) => {
-  if (upEvt.target === downObj) closePopup(downObj);
-};
 
 const escClose = (e) => {
   if (e.key === 'Escape') {
@@ -100,22 +92,49 @@ const escClose = (e) => {
   }
 };
 
+
+/*
+In the last submission i did both events (mousedown and mouseup) because there's a bug when u do only 'click' event
+on the popup. For example you can mouse down on the popup container, move the mouse to popup overlay, release (mouse up),
+and you still will close the popup.
+If you have better solution for this problem than use both events (mousedown + mouseup), please share with me.
+
+let downObj;
+const overlayDown = (downEvt) => {
+  downObj = downEvt.target;
+};
+
+const overlayUp = (upEvt) => {
+  if (upEvt.target === downObj) closePopup(downObj);
+};
+*/
+
+
+
+const overlayClose = (e) => {
+  if (e.target === e.currentTarget) closePopup(e.currentTarget);
+};
+
 function openPopup(popup) {
-  popup.addEventListener('mousedown', overlayDown);
-  popup.addEventListener('mouseup', overlayUp);
-  document.addEventListener('keydown', escClose);
+  /*popup.addEventListener('mousedown', overlayDown);
+  popup.addEventListener('mouseup', overlayUp);*/
+
+  popup.addEventListener('click', overlayClose);
+  document.addEventListener('keydown',escClose);
   popup.classList.add('popup_open');
 }
 
 function closePopup(popup) {
-  popup.removeEventListener('mousedown', overlayDown);
-  popup.removeEventListener('mouseup', overlayUp);
+  /*popup.removeEventListener('mousedown', overlayDown);
+  popup.removeEventListener('mouseup', overlayUp);*/
+
+  popup.removeEventListener('click', overlayClose);
   document.removeEventListener('keydown', escClose);
   popup.classList.remove('popup_open');
 }
 
 function addCard(name, link) {
-  const newCard = templateCard.querySelector('.card').cloneNode(true);
+  let newCard = templateCard.querySelector('.card').cloneNode(true);
   const newCardImage = newCard.querySelector('.card__image');
   newCardImage.alt = name;
   newCardImage.src = link;
@@ -130,6 +149,7 @@ function addCard(name, link) {
   });
   newCard.querySelector('.card__delete-button').addEventListener('click', () => {
     newCard.remove();
+    newCard = null;
   });
   newCard.querySelector('.card__like-button').addEventListener('click', (e) => {
     e.target.classList.toggle('card__like-button_active');
@@ -166,8 +186,10 @@ popupProfileForm.addEventListener('submit', (e) => {
 popupAddCardForm.addEventListener('submit', (e) => {
   e.preventDefault();
   addCard(inputCardTitlePopup.value, inputCardImageLinkPopup.value);
-  inputCardTitlePopup.value = "";
-  inputCardImageLinkPopup.value = "";
+  popupAddCardForm.reset();
   closePopup(popupAddCard);
 })
+
+
+
 

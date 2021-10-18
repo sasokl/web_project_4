@@ -61,11 +61,7 @@ const setEventListeners = (wrapperElement, settings) => {
  * @param inputList list of inputs to check.
  * @returns boolean statement corresponding to the presence of invalid input in input list.
  */
-export const hasInvalidInput = (inputList) => {
-  return inputList.some((inputElement) => {
-    return !inputElement.validity.valid;
-  });
-};
+export const hasInvalidInput = inputList => inputList.some(inputElement => !inputElement.validity.valid);
 
 /**
  * Disable or enable the submit button, corresponding to validity state of inputs in the form.
