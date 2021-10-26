@@ -1,4 +1,4 @@
-# Project 6: Around The U.S.
+# Project 7: Around The U.S.
 
 ## About the project
 
@@ -11,6 +11,7 @@ A blog-site with profile and post creation.
 * Responsive layout with media queries
 * JS popup window
 * Form validation
+* JS classes
 
 ## GitPages
 [Link to project on GitPages](https://sasokl.github.io/web_project_4)
