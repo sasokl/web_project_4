@@ -1,37 +1,93 @@
 //=============== Imports ===============//
-import FormValidator from './FormValidator.js';
-import {openPopup, closePopup} from './popup.js';
+import FormValidator from './components/FormValidator.js';
 import {
-  // elements
-  cards,
-  buttonOpenProfilePopup,
-  buttonCloseProfilePopup,
-  buttonOpenAddCardPopup,
-  buttonCloseAddCardPopup,
-  buttonCloseImagePreviewPopup,
-  inputProfileNamePopup,
-  inputProfileAboutPopup,
-  inputCardTitlePopup,
-  inputCardImageLinkPopup,
-  profileName,
-  profileAbout,
-  popupProfile,
-  popupProfileForm,
-  popupAddCard,
-  popupAddCardForm,
-  popupImagePreview,
-  // initial cards array
-  initialCards,
-  // form settings object
-  settings
+    // selectors
+    cardsSelector,
+    cardTemplateSelector,
+    profileNameSelector,
+    profileAboutSelector,
+    popupProfileSelector,
+    popupAddCardSelector,
+    popupImagePreviewSelector,
+    // elements
+    buttonOpenProfilePopup,
+    buttonCloseProfilePopup,
+    buttonOpenAddCardPopup,
+    buttonCloseAddCardPopup,
+    buttonCloseImagePreviewPopup,
+    inputProfileNamePopup,
+    inputProfileAboutPopup,
+    popupProfileForm,
+    popupAddCardForm,
+    // initial cards array
+    initialCards,
+    // form settings object
+    settings,
 } from "./data.js";
-import Card from "./Card.js";
+import Card from "./components/Card.js";
+import Section from "./components/Section.js";
+import PopupWithForm from "./components/PopupWithForm.js";
+import UserInfo from "./components/UserInfo.js";
+import PopupWithImage from "./components/PopupWithImage.js";
 
 //=============== Initialization ===============//
-// Cards
-initialCards.slice().reverse().forEach((card) => {
-  addCard(card.name, card.link);
+
+// User info
+const userInfo = new UserInfo({
+  nameSelector: profileNameSelector,
+  jobSelector: profileAboutSelector
 });
+
+// Popups
+const imagePreviewPopup = new PopupWithImage(popupImagePreviewSelector);
+imagePreviewPopup.setEventListeners();
+
+const profilePopup = new PopupWithForm(
+    popupProfileSelector,
+    (inputs) => {
+      userInfo.setUserInfo(inputs['name'],inputs['about']);
+    }
+)
+profilePopup.setEventListeners();
+
+const addCardPopup = new PopupWithForm(
+    popupAddCardSelector,
+    (inputs) => {
+      const card = new Card(
+          inputs['card-title'],
+          inputs['card-image-link'],
+          cardTemplateSelector,
+          () => {
+              imagePreviewPopup.open({
+                  text: inputs['card-title'],
+                  imageLink: inputs['card-image-link']
+              });
+          });
+      cardsList.addItem(card.getElement());
+    }
+)
+addCardPopup.setEventListeners();
+
+// Cards
+const cardsList = new Section(
+    {
+        items: initialCards,
+        renderer: (item) => {
+            const card = new Card(
+                item.text,
+                item.imageLink,
+                cardTemplateSelector,
+                () => {
+                    imagePreviewPopup.open({
+                        text: item.text,
+                        imageLink: item.imageLink
+                    })
+                });
+            cardsList.addItem(card.getElement());
+        }
+    }, cardsSelector);
+cardsList.renderItems();
+
 // Form validators
 const profileFormValidator = new FormValidator(settings, popupProfileForm);
 const addCardFormValidator = new FormValidator(settings, popupAddCardForm);
@@ -40,40 +96,25 @@ addCardFormValidator.enableValidation();
 
 //=============== Functions ===============//
 
-function addCard(name, link) {
-  cards.prepend(new Card(name, link, '#card-template').getElement());
-}
-
 // Listeners
 buttonOpenProfilePopup.addEventListener('click', () => {
   profileFormValidator.resetValidation();
-  inputProfileNamePopup.value = profileName.textContent;
-  inputProfileAboutPopup.value = profileAbout.textContent;
-  openPopup(popupProfile);
+  inputProfileNamePopup.value = userInfo.getUserInfo().userName;
+  inputProfileAboutPopup.value = userInfo.getUserInfo().userJob;
+  profilePopup.open();
 });
-buttonCloseProfilePopup.addEventListener('click', () => closePopup(popupProfile));
+buttonCloseProfilePopup.addEventListener('click', () => profilePopup.close());
 
 buttonOpenAddCardPopup.addEventListener('click', () => {
   popupAddCardForm.reset();
   addCardFormValidator.resetValidation();
-  openPopup(popupAddCard);
+  addCardPopup.open();
 });
-buttonCloseAddCardPopup.addEventListener('click', () => closePopup(popupAddCard));
+buttonCloseAddCardPopup.addEventListener('click', () => addCardPopup.close());
 
-buttonCloseImagePreviewPopup.addEventListener('click', () => closePopup(popupImagePreview));
+buttonCloseImagePreviewPopup.addEventListener('click', () => imagePreviewPopup.close());
 
-popupProfileForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  profileName.textContent = inputProfileNamePopup.value;
-  profileAbout.textContent = inputProfileAboutPopup.value;
-  closePopup(popupProfile);
 
-});
-popupAddCardForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  addCard(inputCardTitlePopup.value, inputCardImageLinkPopup.value);
-  closePopup(popupAddCard);
-})
 
 
 

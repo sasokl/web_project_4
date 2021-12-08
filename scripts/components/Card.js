@@ -1,23 +1,10 @@
-import {figureImage, figureCaption, popupImagePreview} from "./data.js";
-import {openPopup, closePopup} from './popup.js';
-
 export default class Card {
 
-  constructor(text, imageLink, templateSelector) {
+  constructor(text, imageLink, templateSelector, handleCardClick) {
     this._text = text;
     this._imageLink = imageLink;
     this._templateSelector = templateSelector;
-    /**
-     * Opens an image review popup with updated content based on the clicked image.
-     * @param e (event) image that was clicked
-     * @private
-     */
-    this._openImageReview = (e) => {
-      figureImage.src = e.target.src;
-      figureImage.alt = e.target.alt;
-      figureCaption.textContent = e.target.alt;
-      openPopup(popupImagePreview);
-    }
+    this._handleCardClick = handleCardClick;
     /**
      * Likes the card. Toggles the appropriate css classes.
      * @param e (event) like button that was clicked
@@ -31,7 +18,7 @@ export default class Card {
      * @private
      */
     this._deleteCard = () => {
-      this.imageElement.removeEventListener('click', this._openImageReview);
+      this.imageElement.removeEventListener('click', this._handleCardClick);
       this.likeButtonElement.removeEventListener('click', this._likeCard);
       this.closeButtonElement.removeEventListener('click', this._deleteCard);
       this.cardNode.remove();
@@ -72,7 +59,7 @@ export default class Card {
     // title element value update
     this.titleElement.textContent = this._text;
     // add listeners
-    this.imageElement.addEventListener('click', this._openImageReview);
+    this.imageElement.addEventListener('click', this._handleCardClick);
     this.likeButtonElement.addEventListener('click', this._likeCard);
     this.closeButtonElement.addEventListener('click', this._deleteCard);
   }

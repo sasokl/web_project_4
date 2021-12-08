@@ -1,6 +1,26 @@
+//=============== Selectors ===============//
+
+// User
+export const profileNameSelector = '.profile__name';
+export const profileAboutSelector = '.profile__about';
+// Cards
+export const cardsSelector = '.cards';
+export const cardTemplateSelector = '#card-template';
+
+// Popups
+export const popupProfileSelector = '.popup_type_profile';
+export const popupAddCardSelector = '.popup_type_add-card';
+export const popupImagePreviewSelector = '.popup_type_image-preview';
+
+export const popupCloseButtonSelector = '.popup__close-button';
+
+//=============== Classes ===============//
+
+// Popups
+export const popupOpenClass = 'popup_open';
+
 //=============== Elements ===============//
-// Cards container =====
-export const cards = document.querySelector('.cards');
+
 // Buttons =====
 // popup profile buttons
 export const buttonOpenProfilePopup = document.querySelector('.profile__edit-button');
@@ -10,61 +30,54 @@ export const buttonOpenAddCardPopup = document.querySelector('.profile__add-butt
 export const buttonCloseAddCardPopup = document.querySelector('.popup__close-button_type_add-card');
 // popup image-preview buttons
 export const buttonCloseImagePreviewPopup = document.querySelector('.popup__close-button_type_image-preview');
+
 // Inputs =====
 // popup profile inputs
 export const inputProfileNamePopup = document.querySelector('#profile-name-input');
 export const inputProfileAboutPopup = document.querySelector('#profile-about-input');
-// popup card-add inputs
-export const inputCardTitlePopup = document.querySelector('#card-title-input');
-export const inputCardImageLinkPopup = document.querySelector('#card-image-link-input');
-
-// Text elements =====
-export const profileName = document.querySelector('.profile__name');
-export const profileAbout = document.querySelector('.profile__about');
 
 // Popups =====
 // popup profile
-export const popupProfile = document.querySelector('.popup_type_profile');
 export const popupProfileForm = document.querySelector('.popup__form_type_profile');
 // popup add-card
-export const popupAddCard = document.querySelector('.popup_type_add-card');
 export const popupAddCardForm = document.querySelector('.popup__form_type_add-card');
 
 // popup image-preview
 export const popupImagePreview = document.querySelector('.popup_type_image-preview');
-export const popupImagePreviewFigure = document.querySelector('.popup__figure');
-export const figureImage = popupImagePreviewFigure.querySelector('.popup__figure-image');
-export const figureCaption = popupImagePreviewFigure.querySelector('.popup__figure-caption');
+export const figureImage = document.querySelector('.popup__figure-image');
+export const figureCaption = document.querySelector('.popup__figure-caption');
 
 //=============== Initial cards array ===============//
+
 export const initialCards = [
   {
-    name: "Yosemite Valley",
-    link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
+    text: "Yosemite Valley",
+    imageLink: "https://code.s3.yandex.net/web-code/yosemite.jpg"
   },
   {
-    name: "Lake Louise",
-    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
+    text: "Lake Louise",
+    imageLink: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
   },
   {
-    name: "Bald Mountains",
-    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
+    text: "Bald Mountains",
+    imageLink: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
   },
   {
-    name: "Latemar",
-    link: "https://code.s3.yandex.net/web-code/latemar.jpg"
+    text: "Latemar",
+    imageLink: "https://code.s3.yandex.net/web-code/latemar.jpg"
   },
   {
-    name: "Vanoise National Park",
-    link: "https://code.s3.yandex.net/web-code/vanoise.jpg"
+    text: "Vanoise National Park",
+    imageLink: "https://code.s3.yandex.net/web-code/vanoise.jpg"
   },
   {
-    name: "Lago di Braies",
-    link: "https://code.s3.yandex.net/web-code/lago.jpg"
+    text: "Lago di Braies",
+    imageLink: "https://code.s3.yandex.net/web-code/lago.jpg"
   }
 ];
 
 //=============== Form settings object ===============//
+
 export const settings = {
   formSelector: ".popup__form",
   fieldsetSelector: ".popup__fieldset",
