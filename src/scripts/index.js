@@ -1,4 +1,5 @@
 //=============== Imports ===============//
+import "../pages/index.css";
 import FormValidator from './components/FormValidator.js';
 import {
     // selectors
@@ -23,7 +24,7 @@ import {
     initialCards,
     // form settings object
     settings,
-} from "./data.js";
+} from "./utils/data.js";
 import Card from "./components/Card.js";
 import Section from "./components/Section.js";
 import PopupWithForm from "./components/PopupWithForm.js";

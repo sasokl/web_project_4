@@ -1,7 +1,7 @@
 import {
     popupOpenClass,
     popupCloseButtonSelector
-} from "../data.js";
+} from "../utils/data.js";
 
 export default class Popup {
     constructor(popupSelector) {

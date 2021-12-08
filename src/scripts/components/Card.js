@@ -23,7 +23,6 @@ export default class Card {
       this.closeButtonElement.removeEventListener('click', this._deleteCard);
       this.cardNode.remove();
       this.cardNode = null;
-      delete this;
     }
 
     this._createCardElement();
