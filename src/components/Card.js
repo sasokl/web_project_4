@@ -58,6 +58,10 @@ export default class Card {
     // title element value update
     this.titleElement.textContent = this._text;
     // add listeners
+    this._setEventListeners();
+  }
+
+  _setEventListeners(){
     this.imageElement.addEventListener('click', this._handleCardClick);
     this.likeButtonElement.addEventListener('click', this._likeCard);
     this.closeButtonElement.addEventListener('click', this._deleteCard);

@@ -1,44 +1,37 @@
-import {
-    popupOpenClass,
-    popupCloseButtonSelector
-} from "../utils/data.js";
 
 export default class Popup {
-    constructor(popupSelector) {
+    constructor(popupSelector, popupOpenClass, popupCloseButtonSelector) {
         this._popupElement = document.querySelector(popupSelector)
+
+        this._popupOpenClass = popupOpenClass;
+        this._popupCloseButtonSelector = popupCloseButtonSelector;
     }
     /**
      * Opens the popup. Adds the corresponding listeners.
      */
     open() {
         this._popupElement.addEventListener('mousedown', this._handleOverlayClick);
-        document.addEventListener('keydown', this._handleEscClose );
-        this._popupElement.classList.add(popupOpenClass);
+        document.addEventListener('keyup', this._handleEscClose );
+        this._popupElement.classList.add(this._popupOpenClass);
     }
     /**
      * Closes the popup. Removes the corresponding listeners.
      */
     close() {
         this._popupElement.removeEventListener('mousedown', this._handleOverlayClick);
-        document.removeEventListener('keydown', this._handleEscClose);
-        this._popupElement.classList.remove(popupOpenClass);
+        document.removeEventListener('keyup', this._handleEscClose);
+        this._popupElement.classList.remove(this._popupOpenClass);
     }
-
-    /* === Question for the reviewer: ===
-    Why is it written in the task to make this method public, if there is only one listener, which can also be added
-    to open and close methods like other listeners?
-    ===================================== */
     /**
      * Adds the popup listeners
      */
     setEventListeners() {
         this._popupElement
-            .querySelector(popupCloseButtonSelector)
+            .querySelector(this._popupCloseButtonSelector)
             .addEventListener('click', () => {
                 this.close();
             });
     }
-
     /**
      * Closes the popup on 'escape' key press.
      * @param e keypress event
@@ -58,7 +51,9 @@ export default class Popup {
     /**
      * Checks if the clicked element was really popup overlay and nothing else. If it is - closes the popup.
      * @param mouseDownEvt click event
+     * @private
      */
+
     _handleOverlayClick = (mouseDownEvt) => {
         // Checks if the upper element (which the 'mousedown' was on) is the popup overlay.
         if (mouseDownEvt.target === mouseDownEvt.currentTarget) {
@@ -71,6 +66,16 @@ export default class Popup {
             mouseDownEvt.currentTarget.addEventListener('mouseup', mouseUpOverlay, {once: true});
         }
     };
+
+    /*
+    Actually i tried your code before, and many other solutions, but in the case with your solution i didnt like the
+    fact that you close the popup with mousedown (you don't make a full click).
+    */
+    /*_handleOverlayClick = (mouseDownEvt) => {
+        if (mouseDownEvt.target === mouseDownEvt.currentTarget) {
+            this.close();
+        }
+    };*/
     //================================================================
 
 
