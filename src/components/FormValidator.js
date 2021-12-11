@@ -77,17 +77,6 @@ export default class FormValidator {
         });
         this._toggleButtonState();
     }
-
-    /*=========================================================================
-    My idea with finding fieldsets was that the class would be dynamic and flexible for changes. That is, as we were
-    taught in the lessons - to make classes so that you can use it in another project without changing anything inside
-    (for example, in a project where there are many fieldsets in one form. Or if I want to add fieldsets to the form in
-    this the same project in the future).
-
-    Anyway, now I will do as you say for the successful adoption of the project, but please explain where is the truth.
-    - When is it better to make classes dynamic and adaptable to other projects, and when is it better to write a class
-    specifically for one project?
-    */
     /**
      * Enables the validation for the form.
      */

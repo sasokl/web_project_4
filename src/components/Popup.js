@@ -53,7 +53,6 @@ export default class Popup {
      * @param mouseDownEvt click event
      * @private
      */
-
     _handleOverlayClick = (mouseDownEvt) => {
         // Checks if the upper element (which the 'mousedown' was on) is the popup overlay.
         if (mouseDownEvt.target === mouseDownEvt.currentTarget) {
@@ -68,8 +67,8 @@ export default class Popup {
     };
 
     /*
-    Actually i tried your code before, and many other solutions, but in the case with your solution i didnt like the
-    fact that you close the popup with mousedown (you don't make a full click).
+    There is another solution for this problem, but in the case with this solution i didnt like the
+    fact that you close the popup with mousedown (you actually don't make a full click).
     */
     /*_handleOverlayClick = (mouseDownEvt) => {
         if (mouseDownEvt.target === mouseDownEvt.currentTarget) {
