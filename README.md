@@ -1,4 +1,4 @@
-# Project 8: Around The U.S.
+# Project 9: Around The U.S.
 
 ## About the project
 
@@ -15,6 +15,9 @@ A blog-site with profile and post creation.
 * Popup window
 * OOP
 * Destructuring syntax
+* Asynchronous programming
+* Working with API (HTTP requests)
+* Object prototypes
 ### Webpack:
 * Build configuration
 * JS Transpiler: Babel
