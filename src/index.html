@@ -13,7 +13,12 @@
   <main class="content">
     <section class="profile">
       <div class="profile__content">
-        <div class="profile__avatar"></div>
+        <div class="profile__avatar">
+          <img src="#" class="profile__avatar-image" alt="Profile avatar">
+          <div class="profile__avatar-overlay">
+            <div class="profile__avatar-edit-icon"></div>
+          </div>
+        </div>
         <div class="profile__info">
           <div class="profile__name-container">
             <h1 class="profile__name">Jacques Cousteau</h1>
@@ -34,7 +39,7 @@
 </div>
 <div class="popup popup_type_profile">
   <div class="popup__container popup__container_type_form">
-    <button type="button" class="popup__close-button popup__close-button_type_profile"></button>
+    <button type="button" class="popup__close-button"></button>
     <h2 class="popup__title">Edit profile</h2>
     <form action="#" class="popup__form popup__form_type_profile" name="popup-profile-form" novalidate>
       <fieldset class="popup__fieldset">
@@ -68,7 +73,32 @@
           <span class="popup__input-error profile-about-input-error"></span>
         </label>
 
-        <button type="submit" class="popup__submit-button">
+        <button type="submit" class="popup__submit-button popup__submit-button_under-inputs">
+          Save
+        </button>
+      </fieldset>
+    </form>
+  </div>
+</div>
+<div class="popup popup_type_avatar">
+  <div class="popup__container popup__container_type_form">
+    <button type="button" class="popup__close-button"></button>
+    <h2 class="popup__title">Change profile picture</h2>
+    <form action="#" class="popup__form popup__form_type_avatar" name="popup-avatar-form" novalidate>
+      <fieldset class="popup__fieldset">
+        <label class="popup__label">
+          <input
+            type="url"
+            name="avatar-image-link"
+            id="avatar-image-link-input"
+            value=""
+            class="popup__input"
+            required
+            placeholder="Image link"
+          />
+          <span class="popup__input-error avatar-image-link-input-error"></span>
+        </label>
+        <button type="submit" class="popup__submit-button popup__submit-button_under-inputs">
           Save
         </button>
       </fieldset>
@@ -77,7 +107,7 @@
 </div>
 <div class="popup popup_type_add-card">
   <div class="popup__container popup__container_type_form">
-    <button class="popup__close-button popup__close-button_type_add-card" type="button"></button>
+    <button class="popup__close-button" type="button"></button>
     <h2 class="popup__title">New place</h2>
     <form action="#" class="popup__form popup__form_type_add-card" name="popup-add-card-form" novalidate>
       <fieldset class="popup__fieldset">
@@ -108,8 +138,21 @@
           />
           <span class="popup__input-error card-image-link-input-error"></span>
         </label>
-        <button type="submit" class="popup__submit-button">
+        <button type="submit" class="popup__submit-button popup__submit-button_under-inputs">
           Create
+        </button>
+      </fieldset>
+    </form>
+  </div>
+</div>
+<div class="popup popup_type_delete-card">
+  <div class="popup__container popup__container_type_form">
+    <button type="button" class="popup__close-button"></button>
+    <h2 class="popup__title">Are you sure?</h2>
+    <form action="#" class="popup__form popup__form_type_delete" name="popup-delete-card-form" novalidate>
+      <fieldset class="popup__fieldset">
+        <button type="submit" class="popup__submit-button">
+          Yes
         </button>
       </fieldset>
     </form>
@@ -117,7 +160,7 @@
 </div>
 <div class="popup popup_type_image-preview">
   <div class="popup__container popup__container_type_image-preview">
-    <button class="popup__close-button popup__close-button_type_image-preview"></button>
+    <button class="popup__close-button"></button>
     <figure class="popup__figure">
       <img src="#" alt="default" class="popup__figure-image">
       <figcaption class="popup__figure-caption"></figcaption>
@@ -130,7 +173,10 @@
     <img src="#" alt="default" class="card__image">
     <div class="card__content">
       <h2 class="card__title"></h2>
-      <button type="button" class="card__like-button"></button>
+      <div class="card__like-container">
+        <button type="button" class="card__like-button"></button>
+        <span class="card__likes-count">0</span>
+      </div>
     </div>
   </div>
 </template>

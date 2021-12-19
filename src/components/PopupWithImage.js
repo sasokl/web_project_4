@@ -9,13 +9,13 @@ export default class PopupWithImage extends Popup {
     /**
      * Opens the popup. Adds the corresponding listeners.
      * Updates the image and caption that needs to be shown.
-     * @param text image title
-     * @param imageLink image link
+     * @param name image title
+     * @param link image link
      */
-    open({text, imageLink}) {
-        this._figureImageElement.src = imageLink;
-        this._figureImageElement.alt = text;
-        this._figureCaptionElement.textContent = text;
+    open({name, link}) {
+        this._figureImageElement.src = link;
+        this._figureImageElement.alt = name;
+        this._figureCaptionElement.textContent = name;
         super.open();
     }
 }

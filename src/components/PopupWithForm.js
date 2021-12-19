@@ -2,8 +2,11 @@ import Popup from "./Popup.js";
 
 
 export default class PopupWithForm extends Popup {
-    constructor(popupSelector,popupOpenClass, popupCloseButtonSelector, settings, handleSubmitForm) {
+    constructor(popupSelector, submitButtonSelector, popupOpenClass, popupCloseButtonSelector, settings, submittingText, handleSubmitForm) {
         super(popupSelector, popupOpenClass, popupCloseButtonSelector);
+        this._submitButton = this._popupElement.querySelector(submitButtonSelector);
+        this._submitButtonDefaultText = this._submitButton.textContent;
+        this._submittingText = submittingText;
         this._handleSubmitForm = handleSubmitForm;
         this._form =  this._popupElement.querySelector(settings.formSelector);
         this._inputsList = Array.from(this._form.querySelectorAll(settings.inputSelector));
@@ -14,6 +17,7 @@ export default class PopupWithForm extends Popup {
      */
     close(){
         this._form.reset();
+        this._submitButton.textContent = this._submitButtonDefaultText;
         super.close();
     }
     /**
@@ -26,7 +30,6 @@ export default class PopupWithForm extends Popup {
         this._inputsList.forEach((input) => {
            inputValues[input.name] = input.value;
         });
-        console.log(inputValues);
         return inputValues;
     }
     /**
@@ -37,8 +40,16 @@ export default class PopupWithForm extends Popup {
 
         this._form.addEventListener('submit', (e) => {
             e.preventDefault();
+            this._submitButton.textContent = this._submittingText;
             this._handleSubmitForm(this._getInputValues());
             this.close()
         });
+    }
+    /**
+     * Sets a new submit form function to the form.
+     * @param handleSubmitForm new function to submit form
+     */
+    setSubmitFormHandleFunction(handleSubmitForm) {
+        this._handleSubmitForm = handleSubmitForm;
     }
 }

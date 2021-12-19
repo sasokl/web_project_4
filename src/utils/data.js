@@ -3,16 +3,21 @@
 // User
 export const profileNameSelector = '.profile__name';
 export const profileAboutSelector = '.profile__about';
+export const profileAvatarImageSelector = '.profile__avatar-image';
 // Cards
 export const cardsSelector = '.cards';
 export const cardTemplateSelector = '#card-template';
 
 // Popups
 export const popupProfileSelector = '.popup_type_profile';
+export const popupAvatarSelector = '.popup_type_avatar';
 export const popupAddCardSelector = '.popup_type_add-card';
+export const popupDeleteCardSelector = '.popup_type_delete-card';
 export const popupImagePreviewSelector = '.popup_type_image-preview';
 
+// Buttons
 export const popupCloseButtonSelector = '.popup__close-button';
+export const popupSubmitButtonSelector = '.popup__submit-button';
 
 //=============== Classes ===============//
 
@@ -22,14 +27,12 @@ export const popupOpenClass = 'popup_open';
 //=============== Elements ===============//
 
 // Buttons =====
-// popup profile buttons
+// popup profile button
 export const buttonOpenProfilePopup = document.querySelector('.profile__edit-button');
-export const buttonCloseProfilePopup = document.querySelector('.popup__close-button_type_profile');
-// popup card-add buttons
+// popup add-card button
 export const buttonOpenAddCardPopup = document.querySelector('.profile__add-button');
-export const buttonCloseAddCardPopup = document.querySelector('.popup__close-button_type_add-card');
-// popup image-preview buttons
-export const buttonCloseImagePreviewPopup = document.querySelector('.popup__close-button_type_image-preview');
+// popup avatar-edit button
+export const buttonOpenAvatarEditPopup = document.querySelector('.profile__avatar');
 
 // Inputs =====
 // popup profile inputs
@@ -39,6 +42,8 @@ export const inputProfileAboutPopup = document.querySelector('#profile-about-inp
 // Popups =====
 // popup profile
 export const popupProfileForm = document.querySelector('.popup__form_type_profile');
+// popup profile
+export const popupAvatarForm = document.querySelector('.popup__form_type_avatar');
 // popup add-card
 export const popupAddCardForm = document.querySelector('.popup__form_type_add-card');
 
@@ -47,35 +52,15 @@ export const popupImagePreview = document.querySelector('.popup_type_image-previ
 export const figureImage = document.querySelector('.popup__figure-image');
 export const figureCaption = document.querySelector('.popup__figure-caption');
 
-//=============== Initial cards array ===============//
+//=============== Api Settings ===============//
 
-export const initialCards = [
-  {
-    text: "Yosemite Valley",
-    imageLink: "https://code.s3.yandex.net/web-code/yosemite.jpg"
+export const apiSettings = {
+  baseUrl: "https://around.nomoreparties.co/v1/group-12",
+  headers: {
+        authorization: "8595ca8e-a8f6-4218-b31d-c12a79561de8",
+        'Content-Type': 'application/json'
   },
-  {
-    text: "Lake Louise",
-    imageLink: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
-  },
-  {
-    text: "Bald Mountains",
-    imageLink: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
-  },
-  {
-    text: "Latemar",
-    imageLink: "https://code.s3.yandex.net/web-code/latemar.jpg"
-  },
-  {
-    text: "Vanoise National Park",
-    imageLink: "https://code.s3.yandex.net/web-code/vanoise.jpg"
-  },
-  {
-    text: "Lago di Braies",
-    imageLink: "https://code.s3.yandex.net/web-code/lago.jpg"
-  }
-];
-
+}
 //=============== Form settings object ===============//
 
 export const settings = {
