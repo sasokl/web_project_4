@@ -104,6 +104,7 @@ api.getUser()
             (inputs) => {
                 api.setUser(inputs['name'], inputs['about'])
                     .then(() => {
+                        profilePopup.close();
                         profile.setUserInfo(inputs['name'], inputs['about']);
                     })
                     .catch(logError);
@@ -129,6 +130,7 @@ api.getUser()
             (inputs) => {
                 api.setAvatarPicture(inputs['avatar-image-link'])
                     .then(() => {
+                        avatarPopup.close();
                         profile.setAvatar(inputs['avatar-image-link']);
                     })
                     .catch(logError);
@@ -175,6 +177,7 @@ api.getUser()
                     (inputs) => {
                         api.addCard(inputs['card-title'], inputs['card-image-link'])
                             .then(newCard => {
+                                addCardPopup.close();
                                 cardsList.addItem(newCard);
                             })
                             .catch(logError);
@@ -203,7 +206,7 @@ api.getUser()
  * @returns new card element
  */
 function createCard({cardID, name, link, likes, ownerID}, templateSelector, userID) {
-    return new Card(
+    const newCard = new Card(
         userID,
         {
             name,
@@ -218,26 +221,38 @@ function createCard({cardID, name, link, likes, ownerID}, templateSelector, user
                 link: link
             })
         },
-        (toLike) => {
+        (toLike, submitUpdate) => {
             toLike ?
                 api.likeCard(cardID)
+                    .then((res)=>{
+                        console.log("like");
+                        newCard.updateLikes(res['likes']);
+                        submitUpdate();
+                    })
                     .catch(logError) :
                 api.unlikeCard(cardID)
+                    .then((res) => {
+                        console.log("unlike");
+                        newCard.updateLikes(res['likes']);
+                        submitUpdate();
+                    })
                     .catch(logError);
         },
         (submitDelete) => {
             cardDeletePopup.setSubmitFormHandleFunction(() => {
                 api.deleteCard(cardID)
                     .then(() => {
+                        cardDeletePopup.close();
                         submitDelete();
                     })
                     .catch(logError);
             });
             cardDeletePopup.open();
         }
-    )
-        .getElement();
+    );
+    return newCard.getElement();
 }
+
 /**
  * Logs the catched error to the console.
  * @param err logged text to console

@@ -10,31 +10,29 @@ export default class Card {
     this._handleCardClick = handleCardClick;
     this._handleLikeClick = handleLikeClick;
     this._handleDeleteClick = handleDeleteClick;
+    this._likeStatus = false;
     this._updateLikeStatus();
+
+    if(ownerID === "77ae1b226b612dda472fcf57"){
+      console.log(this._likeStatus);
+    }
 
     this._createCardElement();
   }
   /**
    * Likes the card. Toggles the appropriate css classes.
-   * @param e (event) like button that was clicked
    * @private
    */
-  _likeCard = (e) => {
-    e.target.classList.toggle('card__like-button_active');
-    this._likesCountElement.textContent = this._likeStatus ?
-        `${parseInt(this._likesCountElement.textContent) - 1}`:
-        `${parseInt(this._likesCountElement.textContent) + 1}`;
+  _likeCard = () => {
+    console.log("likeCard");
+    this._likeButtonElement.classList.toggle('card__like-button_active');
     this._likeStatus = !this._likeStatus;
-    this._handleLikeClick(this._likeStatus);
   }
   /**
-   * Delete the card with all its content. Removes the listeners from image, like button and delete button.
+   * Delete the card with all its content.
    * @private
    */
   _deleteCard = () => {
-    this._imageElement.removeEventListener('click', this._handleCardClick);
-    this._likeButtonElement.removeEventListener('click', this._likeCard);
-    this._deleteButtonElement.removeEventListener('click', this._deleteCard);
     this._cardNode.remove();
     this._cardNode = null;
   }
@@ -77,24 +75,39 @@ export default class Card {
     // add listeners
     this._setEventListeners();
   }
-
   /**
    * Set event listeners for card elements.
    * @private
    */
   _setEventListeners(){
     this._imageElement.addEventListener('click', this._handleCardClick);
-    this._likeButtonElement.addEventListener('click', this._likeCard);
+    this._likeButtonElement.addEventListener('click', () => {
+      this._handleLikeClick(!this._likeStatus, this._likeCard);
+    });
     this._deleteButtonElement.addEventListener('click', () => {
       this._handleDeleteClick(this._deleteCard);
     });
   }
+
+  /**
+   * Checks if you already liked the card, and updates the status.
+   * @private
+   */
   _updateLikeStatus(){
     this._likes.forEach(likedUser => {
       if (likedUser['_id'] === this._userID) {
         this._likeStatus = true;
       }
     })
+  }
+
+  /**
+   * Updates the count of likes.
+   * @param likesArr likes array
+   */
+  updateLikes(likesArr){
+    console.log(likesArr.length);
+    this._likesCountElement.textContent = likesArr.length;
   }
   /**
    * Returns a card element.

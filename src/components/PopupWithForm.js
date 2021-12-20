@@ -42,7 +42,6 @@ export default class PopupWithForm extends Popup {
             e.preventDefault();
             this._submitButton.textContent = this._submittingText;
             this._handleSubmitForm(this._getInputValues());
-            this.close()
         });
     }
     /**
