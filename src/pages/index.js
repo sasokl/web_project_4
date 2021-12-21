@@ -225,14 +225,12 @@ function createCard({cardID, name, link, likes, ownerID}, templateSelector, user
             toLike ?
                 api.likeCard(cardID)
                     .then((res)=>{
-                        console.log("like");
                         newCard.updateLikes(res['likes']);
                         submitUpdate();
                     })
                     .catch(logError) :
                 api.unlikeCard(cardID)
                     .then((res) => {
-                        console.log("unlike");
                         newCard.updateLikes(res['likes']);
                         submitUpdate();
                     })

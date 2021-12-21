@@ -13,10 +13,6 @@ export default class Card {
     this._likeStatus = false;
     this._updateLikeStatus();
 
-    if(ownerID === "77ae1b226b612dda472fcf57"){
-      console.log(this._likeStatus);
-    }
-
     this._createCardElement();
   }
   /**
@@ -24,7 +20,6 @@ export default class Card {
    * @private
    */
   _likeCard = () => {
-    console.log("likeCard");
     this._likeButtonElement.classList.toggle('card__like-button_active');
     this._likeStatus = !this._likeStatus;
   }
@@ -106,7 +101,6 @@ export default class Card {
    * @param likesArr likes array
    */
   updateLikes(likesArr){
-    console.log(likesArr.length);
     this._likesCountElement.textContent = likesArr.length;
   }
   /**
